@@ -1,5 +1,5 @@
-json-dp-java
-============
+dpf-java-core
+=============
 
 dpf-java-core is a reference Java implementation of DPF (Data Processing Framework). 
 DPF and dpf-java-core have been originally developed by [Dr. Paolo Ciccarese](http://www.paolociccarse.info).
