@@ -20,6 +20,10 @@
 */
 package info.paolociccarese.project.dpf.java;
 
+import info.paolociccarese.project.dpf.java.core.IStage;
+import info.paolociccarese.project.dpf.java.core.IStageCommand;
+import info.paolociccarese.project.dpf.java.core.IStageListener;
+
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
