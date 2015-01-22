@@ -36,7 +36,7 @@ public interface IStageListener {
 	 * @param parentStage The stage wrapping the stage command logic	
 	 * @param parameters  List of parametrizations for the pipeline.
 	 */
-	public void notifyStageCompletion(IStage parentStage, Map<String, String> parameters, Object data);
+	public void notifyStageCompletion(IStage parentStage, Map<String, Object> parameters, Object data);
 	
-	public void notifyStageSkipped(IStage parentStage, Map<String, String> parameters, Object data);
+	public void notifyStageSkipped(IStage parentStage, Map<String, Object> parameters, Object data);
 }

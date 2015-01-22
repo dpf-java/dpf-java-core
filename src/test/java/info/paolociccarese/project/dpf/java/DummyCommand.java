@@ -39,7 +39,7 @@ public class DummyCommand implements IStageCommand {
 	}
 	
 	@Override
-	public void run(IStage stage, Map<String, String> parameters, Object data) {
+	public void run(IStage stage, Map<String, Object> parameters, Object data) {
 		try {
 			TimeUnit.SECONDS.sleep(3);
 		} catch (InterruptedException e) {

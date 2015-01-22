@@ -86,7 +86,7 @@ public abstract class APipeline implements IStageListener /*, IParametersCache*/
 		_currentStage = FIRST_STAGE;			
 	}
 	
-	public void start(Map<String, String> parameters, Object data) {
+	public void start(Map<String, Object> parameters, Object data) {
 		_pipelineStartTime = System.currentTimeMillis();
 		
 		setup();
@@ -107,11 +107,11 @@ public abstract class APipeline implements IStageListener /*, IParametersCache*/
 		}
 	}
 	
-	private void executeStage(Map<String, String> parameters, Object data, int currentStage) {
+	private void executeStage(Map<String, Object> parameters, Object data, int currentStage) {
 		Long stageStartTime = System.currentTimeMillis();
 		try {
 			String commandName = _stages.get(currentStage).getCommand().getClass().getName();
-			String isStageExecutable = parameters.get(commandName);
+			String isStageExecutable = parameters.get(commandName).toString();
 			if(isStageExecutable!=null) _stages.get(currentStage).setExecutable(Boolean.parseBoolean(isStageExecutable)); 
 			if(_stages.get(currentStage).isExecutable()) {
 				logINFO(_stages.get(currentStage), "Executing Stage", commandName);
@@ -129,20 +129,20 @@ public abstract class APipeline implements IStageListener /*, IParametersCache*/
 	}
 	
 	@Override
-	public void notifyStageCompletion(IStage stage, Map<String, String> parameters, Object data) {
+	public void notifyStageCompletion(IStage stage, Map<String, Object> parameters, Object data) {
 		long startTime = _stagesStartTimes.remove(stage.hashCode());
 		logINFO(stage, "Stage", "completed in (ms) " + (System.currentTimeMillis() - startTime));
 		next(parameters, data);
 	}
 	
 	@Override
-	public void notifyStageSkipped(IStage stage, Map<String, String> parameters, Object data) {
+	public void notifyStageSkipped(IStage stage, Map<String, Object> parameters, Object data) {
 		long startTime = _stagesStartTimes.remove(stage.hashCode());
 		logINFO(stage, "Stage", "skipped in (ms) " + (System.currentTimeMillis() - startTime));
 		next(parameters, data);
 	}
 	
-	public void next(Map<String, String> parameters, Object data) {
+	public void next(Map<String, Object> parameters, Object data) {
 		if(_pipelineStatus!=PipelineStatus.TERMINATED) { 
 			if(_stages.size()>0 && _stages.size()>(++_currentStage)) {
 				executeStage(parameters, data, _currentStage);

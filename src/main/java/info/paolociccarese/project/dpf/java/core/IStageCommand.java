@@ -36,5 +36,5 @@ public interface IStageCommand {
 	 * @param parameters	List of parametrizations for the pipeline.
 	 *  @param data			The data to process
 	 */
-	public void run(IStage parentStage, Map<String, String> parameters, Object data);
+	public void run(IStage parentStage, Map<String, Object> parameters, Object data);
 }
