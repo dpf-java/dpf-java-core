@@ -111,7 +111,7 @@ public abstract class APipeline implements IStageListener /*, IParametersCache*/
 		Long stageStartTime = System.currentTimeMillis();
 		try {
 			String commandName = _stages.get(currentStage).getCommand().getClass().getName();
-			String isStageExecutable = parameters.get(commandName).toString();
+			String isStageExecutable = parameters.get(commandName)!=null? parameters.get(commandName).toString() : null;
 			if(isStageExecutable!=null) _stages.get(currentStage).setExecutable(Boolean.parseBoolean(isStageExecutable)); 
 			if(_stages.get(currentStage).isExecutable()) {
 				logINFO(_stages.get(currentStage), "Executing Stage", commandName);
